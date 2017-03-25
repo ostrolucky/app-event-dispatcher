@@ -1,0 +1,29 @@
+{
+  "name": "ostrolucky/app-event-dispatcher",
+  "description": "Event Dispatcher for your application domain",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gabriel Ostrolucký",
+      "email": "gabriel.ostrolucky@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6"
+  },
+  "autoload": {
+    "psr-4": { "Ostrolucky\\AppEventDispatcher\\": "src" }
+  },
+  "autoload-dev": {
+    "psr-4": { "Ostrolucky\\AppEventDispatcher\\Test\\": "test" }
+  },
+  "require-dev": {
+    "humbug/humbug": "~1.0@dev",
+    "elliotchance/concise": "^2.1",
+    "symfony/dependency-injection": "*",
+    "symfony/event-dispatcher": "*"
+  },
+  "suggest": {
+    "symfony/dependency-injection": "To automatically attach your services to event dispatcher based on service tags"
+  }
+}
