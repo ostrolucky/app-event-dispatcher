@@ -22,7 +22,8 @@ class RegisterListenersPass implements CompilerPassInterface
 
     protected $listeners = [];
 
-    public function __construct($dispatcherService = 'app.event_dispatcher', $listenerTag = 'app.event_listener') {
+    public function __construct($dispatcherService = 'app.event_dispatcher', $listenerTag = 'app.event_listener')
+    {
         $this->dispatcherService = $dispatcherService;
         $this->listenerTag = $listenerTag;
     }
@@ -44,7 +45,8 @@ class RegisterListenersPass implements CompilerPassInterface
                 if ($event && $isSubscriber) {
                     throw new AppEventDispatcherException(
                         'Service "%s" is an event subscriber, so why do you define listener specific '.
-                        'tag attributes in service definition, instead of inside the class?', $id);
+                        'tag attributes in service definition, instead of inside the class?', $id
+                    );
                 }
                 if (isset($event['event'])) {
                     $this->addListener($id, $event);
@@ -61,7 +63,7 @@ class RegisterListenersPass implements CompilerPassInterface
         $definition = $container->findDefinition($this->dispatcherService);
         krsort($this->listeners);
         foreach (call_user_func_array('array_merge', $this->listeners) as $listener) {
-            list($id, $event, $method)  = $listener;
+            list($id, $event, $method) = $listener;
             $definition->addMethodCall('attach', [$event, [new Reference($id), $method]]);
         }
     }

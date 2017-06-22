@@ -12,7 +12,7 @@ It's strictly for use in **domain of your application**. This allows it to:
 Via Composer
 
 ``` bash
-$ composer require ostrolucky/app-event-dispatcher:^1.0@dev
+composer require ostrolucky/app-event-dispatcher:dev-master
 ```
 
 ## Requirements
@@ -166,5 +166,5 @@ of regular dispatchers. Removing it is harder than replacing dispatcher they use
 
 **A**: I didn't do this because regular event dispatchers are better suited for this. Their restrictive public interface 
 and additional features are actually plus here, as it allows to keep better backwards compatibility for libraries and
-more control over process when multiple different libraries listen to same event. That's why is this dispatcher focused
-on usage in application domain only.
+more control over process when multiple different 3rd party libraries listen to same event. That's why is this dispatcher 
+focused on usage in application domain only.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ostrolucky\AppEventDispatcher\Test;
+namespace Ostrolucky\AppEventDispatcher\Test\Symfony\DependencyInjection;
 
 
 use Concise\Core\TestCase;
@@ -9,8 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class RegisterListenersPassTest extends TestCase
-{
+class RegisterListenersPassTest extends TestCase {
     /** @var ContainerBuilder */
     private $container;
 
@@ -34,7 +33,7 @@ class RegisterListenersPassTest extends TestCase
         $this->assertEquals([
             ['attach', ['kernel.request', [new Reference('b'), 'stuffMethod']]],
             ['attach', ['kernel.request', [new Reference('a'), 'onKernelRequest']]],
-        ],$definition->getMethodCalls());
+        ], $definition->getMethodCalls());
     }
 
     /**
@@ -71,7 +70,7 @@ class RegisterListenersPassTest extends TestCase
             ['attach', ['event2', [new Reference('a'), 'method2']]],
             ['attach', ['event3', [new Reference('a'), 'method4']]],
             ['attach', ['event3', [new Reference('a'), 'method3']]],
-        ],$definition->getMethodCalls());
+        ], $definition->getMethodCalls());
     }
 }
 
