@@ -62,7 +62,7 @@ it's going to be treated as regular listener. Don't worry, it will also alert yo
 In contrast to most event dispatchers, this dispatcher encourages you to shift responsibility of argument signature
 validation into event listener. You are free to dispatch directly whatever arguments your listener needs. Any types, any number of them.
 
-In most dispatchers you are forced to encapsulate all of the arguments into single argument. In case of Symfony event 
+In most dispatchers you are forced to wrap all of the arguments into single argument. In case of Symfony event 
 dispatcher it's event object:
 ```php
 // symfony event dispatcher
@@ -75,7 +75,7 @@ $eventDispatcher->dispatch('some.event', $event);
 // vs. this dispatcher
 $appEventDisdpatcher->dispatch('some.event', null, new User(), [3, 5]);
 ```
-Then in listener if you want to ensure correct arguments are passed, in most dispatchers you are forced to decapsulate 
+Then in listener if you want to ensure correct arguments are passed, in most dispatchers you are forced to unwrap 
 it and check the types manually:
 
 ```php
@@ -112,7 +112,7 @@ public function onSomeEvent(?Group $group, ?User $user, array $array) {
 
 As you can see, symfony event dispatcher violates [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) hard 
 and makes writing new listeners very repetitive with lot of boilerplate. And even if you decide type safety isn't worth
-it so you skip all of this argument validation, you are still required to write docblocks if you want your IDE 
+it so you skip all of this argument validation, you are still required to write annotations if you want your IDE 
 understand what type of arguments you are working with. 
 
 
@@ -153,8 +153,8 @@ my compiler pass for Symfony framework.
 ## FAQ
 **Q**: What's the point of using dispatcher for application events, instead of doing direct service calls?
 
-**A**: I agree that most people are doing it wrong and they should use direct service calls instead because using
-dispatcher means harder debugging, since it's only known at runtime what listeners are actually called. It makes it hard
+**A**: I agree that most people are doing it wrong and they should use direct service calls instead, because using
+dispatcher means harder debugging, since it's only known at runtime what listeners are actually attached. It makes it hard
 to know what callback will be triggered by following regular flow of the program, because attaching is mostly done totally 
 out of context of dispatch call. That said:
 * Many applications already heavily use dispatching inside their application domain and suffer from limitations
