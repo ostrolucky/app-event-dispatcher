@@ -10,13 +10,13 @@ namespace Ostrolucky\AppEventDispatcher;
 interface LaxEventDispatcherInterface
 {
     /**
-     * Dispatch the event, which means call all of the callbacks which are attached to an identifier ($event)
+     * Dispatch the event, which means call all of the callbacks which are attached to an identifier ($event).
      *
      * Does not enforce type or number of $listenerArguments
      * Does not even really enforce your $event to be string
      *
      * @param string $event
-     * @param array ...$listenerArguments
+     * @param array  ...$listenerArguments
      */
     public function dispatch($event, ...$listenerArguments);
 }

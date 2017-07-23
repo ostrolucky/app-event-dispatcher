@@ -30,7 +30,7 @@ class AppEventDispatcher implements LaxEventDispatcherInterface
     }
 
     /**
-     * @param string $event
+     * @param string   $event
      * @param callable $listener
      */
     public function attach($event, callable $listener)
@@ -43,7 +43,7 @@ class AppEventDispatcher implements LaxEventDispatcherInterface
     }
 
     /**
-     * @param string $event
+     * @param string   $event
      * @param callable $listener
      */
     public function detach($event, callable $listener)

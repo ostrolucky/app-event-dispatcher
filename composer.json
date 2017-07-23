@@ -21,7 +21,9 @@
     "humbug/humbug": "~1.0@dev",
     "elliotchance/concise": "^2.1",
     "symfony/dependency-injection": "*",
-    "symfony/event-dispatcher": "*"
+    "symfony/event-dispatcher": "*",
+    "symfony/workflow": "*",
+    "doctrine/orm": "*"
   },
   "suggest": {
     "symfony/dependency-injection": "To automatically attach your services to event dispatcher based on service tags"
