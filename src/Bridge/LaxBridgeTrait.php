@@ -2,8 +2,7 @@
 
 namespace Ostrolucky\AppEventDispatcher\Bridge;
 
-use Ostrolucky\AppEventDispatcher\AppEventDispatcherException;
-use Ostrolucky\AppEventDispatcher\LaxEventDispatcherInterface;
+use Ostrolucky\AppEventDispatcher\HasListenerAwareLaxEventDispatcherInterface;
 
 trait LaxBridgeTrait
 {
@@ -12,13 +11,13 @@ trait LaxBridgeTrait
     private $dynamicDispatching = true;
 
     public function __construct(
-        LaxEventDispatcherInterface $dispatcher,
+        HasListenerAwareLaxEventDispatcherInterface $dispatcher,
         EventExtractorInterface $eventExtractor = null,
-        $dynamicDispatching = true
+        $makeSureDispatcherHasListenerForSuppliedEventBeforeDispatching = true
     ) {
         $this->dispatcher = $dispatcher;
         $this->eventExtractor = $eventExtractor;
-        $this->dynamicDispatching = $dynamicDispatching;
+        $this->dynamicDispatching = $makeSureDispatcherHasListenerForSuppliedEventBeforeDispatching;
     }
 
     /**
@@ -28,14 +27,10 @@ trait LaxBridgeTrait
      */
     protected function doLaxDispatch($eventName, $event = null)
     {
-        $listenerArguments = $this->eventExtractor ? $this->eventExtractor->extract($event) : [$event];
+        $listenerArguments = $this->eventExtractor === null ? [$event] : $this->eventExtractor->extract($event);
 
-        try {
+        if (!$this->dynamicDispatching || $this->dispatcher->hasListener($eventName)) {
             $this->dispatcher->dispatch($eventName, ...$listenerArguments);
-        } catch (AppEventDispatcherException $e) {
-            if (!$this->dynamicDispatching) {
-                throw $e;
-            }
         }
 
         return $event;

@@ -22,7 +22,7 @@ class DoctrineEventManagerBridge extends EventManager
 
     public function hasListeners($event)
     {
-        $this->throwUnsupported();
+        return $this->dispatcher->hasListener($event);
     }
 
     public function addEventListener($events, $listener)

@@ -2,7 +2,7 @@
 
 namespace Ostrolucky\AppEventDispatcher;
 
-class AppEventDispatcher implements LaxEventDispatcherInterface
+class AppEventDispatcher implements HasListenerAwareLaxEventDispatcherInterface
 {
     private $listeners = [];
 
@@ -21,8 +21,7 @@ class AppEventDispatcher implements LaxEventDispatcherInterface
     }
 
     /**
-     * @param string $event
-     * @return bool
+     * {@inheritdoc}
      */
     public function hasListener($event)
     {

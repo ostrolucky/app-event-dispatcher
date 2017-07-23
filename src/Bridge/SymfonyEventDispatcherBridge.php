@@ -47,6 +47,6 @@ class SymfonyEventDispatcherBridge implements EventDispatcherInterface
 
     public function hasListeners($eventName = null)
     {
-        $this->throwUnsupported();
+        return $this->dispatcher->hasListener($eventName);
     }
 }
