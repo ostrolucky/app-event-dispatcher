@@ -1,14 +1,14 @@
 <?php
 
-namespace Ostrolucky\AppEventDispatcher\Bridge;
+namespace Ostrolucky\AppEventDispatcher\Adapter;
 
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class SymfonyEventDispatcherBridge implements EventDispatcherInterface
+class SymfonyEventDispatcherAdapter implements EventDispatcherInterface
 {
-    use LaxBridgeTrait;
+    use LaxAdapterTrait;
 
     public function dispatch($eventName, Event $event = null)
     {

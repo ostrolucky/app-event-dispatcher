@@ -1,10 +1,10 @@
 <?php
 
-namespace Ostrolucky\AppEventDispatcher\Bridge;
+namespace Ostrolucky\AppEventDispatcher\Adapter;
 
 use Ostrolucky\AppEventDispatcher\HasListenerAwareLaxEventDispatcherInterface;
 
-trait LaxBridgeTrait
+trait LaxAdapterTrait
 {
     private $dispatcher;
     private $eventExtractor;

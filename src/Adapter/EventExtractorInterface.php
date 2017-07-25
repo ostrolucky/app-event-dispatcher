@@ -1,6 +1,6 @@
 <?php
 
-namespace Ostrolucky\AppEventDispatcher\Bridge;
+namespace Ostrolucky\AppEventDispatcher\Adapter;
 
 interface EventExtractorInterface
 {

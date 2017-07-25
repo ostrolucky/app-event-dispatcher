@@ -1,14 +1,14 @@
 <?php
 
-namespace Ostrolucky\AppEventDispatcher\Bridge;
+namespace Ostrolucky\AppEventDispatcher\Adapter;
 
 use Doctrine\Common\EventArgs;
 use Doctrine\Common\EventManager;
 use Doctrine\Common\EventSubscriber;
 
-class DoctrineEventManagerBridge extends EventManager
+class DoctrineEventManagerAdapter extends EventManager
 {
-    use LaxBridgeTrait;
+    use LaxAdapterTrait;
 
     public function dispatchEvent($eventName, EventArgs $eventArgs = null)
     {

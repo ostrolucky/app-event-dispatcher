@@ -1,15 +1,15 @@
 <?php
 
-namespace Ostrolucky\AppEventDispatcher\Test\Bridge;
+namespace Ostrolucky\AppEventDispatcher\Test\Adapter;
 
 use Concise\Core\TestCase;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Ostrolucky\AppEventDispatcher\AppEventDispatcher;
-use Ostrolucky\AppEventDispatcher\Bridge\DoctrineEventManagerBridge;
+use Ostrolucky\AppEventDispatcher\Adapter\DoctrineEventManagerAdapter;
 
-class DoctrineEventManagerBridgeTest extends TestCase
+class DoctrineEventManagerAdapterTest extends TestCase
 {
     /**
      * @expectedException \Doctrine\ORM\ORMException
@@ -20,6 +20,6 @@ class DoctrineEventManagerBridgeTest extends TestCase
         $connection = $this->mock(Connection::class)->get();
         /** @var Configuration $configuration */
         $configuration = $this->niceMock(Configuration::class)->get();
-        EntityManager::create($connection, $configuration, new DoctrineEventManagerBridge(new AppEventDispatcher));
+        EntityManager::create($connection, $configuration, new DoctrineEventManagerAdapter(new AppEventDispatcher));
     }
 }
