@@ -3,9 +3,9 @@
 namespace Ostrolucky\AppEventDispatcher\Test\Adapter;
 
 use Concise\Core\TestCase;
-use Ostrolucky\AppEventDispatcher\AppEventDispatcher;
 use Ostrolucky\AppEventDispatcher\Adapter\EventExtractorInterface;
 use Ostrolucky\AppEventDispatcher\Adapter\SymfonyEventDispatcherAdapter;
+use Ostrolucky\AppEventDispatcher\AppEventDispatcher;
 use Symfony\Component\Workflow\Definition;
 use Symfony\Component\Workflow\Event\Event;
 use Symfony\Component\Workflow\Marking;
@@ -39,15 +39,24 @@ class SymfonyEventDispatcherAdapterTest extends TestCase
     public function testDispatchWithExtractor()
     {
         $this->dispatcher->attach('foo', function(\stdClass $stdClass, Event $event) {});
-        $bridge = new SymfonyEventDispatcherAdapter($this->dispatcher, new WorkflowExtractor());
-        $bridge->dispatch('foo', $this->workflowEvent);
+        $adapter = new SymfonyEventDispatcherAdapter($this->dispatcher, new WorkflowExtractor);
+        $adapter->dispatch('foo', $this->workflowEvent);
+    }
+
+    /**
+     * @expectedException \LogicException
+     */
+    public function testDispatchWithInvalidExtractor()
+    {
+        $adapter = new SymfonyEventDispatcherAdapter($this->dispatcher, new InvalidExtractor);
+        $adapter->dispatch('foo');
     }
 
     public function testDispatchWithoutExtractor()
     {
         $this->dispatcher->attach('foo', function(Event $event) {});
-        $bridge = new SymfonyEventDispatcherAdapter($this->dispatcher);
-        $bridge->dispatch('foo', $this->workflowEvent);
+        $adapter = new SymfonyEventDispatcherAdapter($this->dispatcher);
+        $adapter->dispatch('foo', $this->workflowEvent);
     }
 
     /**
@@ -57,8 +66,8 @@ class SymfonyEventDispatcherAdapterTest extends TestCase
     public function testDispatchNull()
     {
         $this->dispatcher->attach('foo', function(Event $event) {});
-        $bridge = new SymfonyEventDispatcherAdapter($this->dispatcher);
-        $bridge->dispatch('foo', null);
+        $adapter = new SymfonyEventDispatcherAdapter($this->dispatcher);
+        $adapter->dispatch('foo', null);
     }
 
     /**
@@ -66,8 +75,8 @@ class SymfonyEventDispatcherAdapterTest extends TestCase
      */
     public function testDispatchWithErrorPropagation()
     {
-        $bridge = new SymfonyEventDispatcherAdapter($this->dispatcher, null, false);
-        $bridge->dispatch('foo');
+        $adapter = new SymfonyEventDispatcherAdapter($this->dispatcher, null, false);
+        $adapter->dispatch('foo');
     }
 }
 
@@ -80,5 +89,13 @@ class WorkflowExtractor implements EventExtractorInterface
     public function extract($event = null)
     {
         return [$event->getSubject(), $event];
+    }
+}
+
+class InvalidExtractor implements EventExtractorInterface
+{
+    public function extract($event = null)
+    {
+        throw new \LogicException();
     }
 }
