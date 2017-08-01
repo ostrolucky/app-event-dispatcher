@@ -57,6 +57,12 @@ class AppEventDispatcherTest extends TestCase
         $this->eventDispatcher->attach('e', $this->eventListener);
     }
 
+    public function testAttachWithSimilarListenerAlreadyAttached()
+    {
+        $this->eventDispatcher->attach('e', $this->eventListener);
+        $this->eventDispatcher->attach('e', clone $this->eventListener);
+    }
+
     /**
      * @expectedException \Ostrolucky\AppEventDispatcher\AppEventDispatcherException
      */
@@ -84,6 +90,15 @@ class AppEventDispatcherTest extends TestCase
     {
         $this->eventDispatcher->attach('e', function () {});
         $this->eventDispatcher->detach('yep', $this->eventListener);
+    }
+
+    /**
+     * @expectedException \Ostrolucky\AppEventDispatcher\AppEventDispatcherException
+     */
+    public function testDetachWithSimilarListenerAlreadyAttachedButNotExactOne()
+    {
+        $this->eventDispatcher->attach('e', $this->eventListener);
+        $this->eventDispatcher->detach('e', clone $this->eventListener);
     }
 
     /**
