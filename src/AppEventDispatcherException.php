@@ -12,5 +12,4 @@ class AppEventDispatcherException extends \DomainException
     {
         parent::__construct(sprintf($message, $replacement));
     }
-
 }

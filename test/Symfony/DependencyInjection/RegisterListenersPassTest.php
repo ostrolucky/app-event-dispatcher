@@ -2,14 +2,14 @@
 
 namespace Ostrolucky\AppEventDispatcher\Test\Symfony\DependencyInjection;
 
-
 use Concise\Core\TestCase;
 use Ostrolucky\AppEventDispatcher\Symfony\DependencyInjection\RegisterListenersPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class RegisterListenersPassTest extends TestCase {
+class RegisterListenersPassTest extends TestCase
+{
     /** @var ContainerBuilder */
     private $container;
 
@@ -74,7 +74,8 @@ class RegisterListenersPassTest extends TestCase {
     }
 }
 
-class ValidSubscriber implements EventSubscriberInterface {
+class ValidSubscriber implements EventSubscriberInterface
+{
 
     public static function getSubscribedEvents()
     {

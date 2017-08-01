@@ -82,7 +82,7 @@ class AppEventDispatcherTest extends TestCase
      */
     public function testDetachWithoutSuchListener()
     {
-        $this->eventDispatcher->attach('e', function() {});
+        $this->eventDispatcher->attach('e', function () {});
         $this->eventDispatcher->detach('yep', $this->eventListener);
     }
 

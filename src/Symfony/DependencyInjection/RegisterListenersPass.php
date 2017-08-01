@@ -50,8 +50,7 @@ class RegisterListenersPass implements CompilerPassInterface
                 }
                 if (isset($event['event'])) {
                     $this->addListener($id, $event);
-                }
-                elseif (!$isSubscriber) {
+                } elseif (!$isSubscriber) {
                     throw new AppEventDispatcherException(
                         'You need to define some events your listener service '.
                         '"%s" should listen to, or make it event subscriber.', $id

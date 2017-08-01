@@ -38,7 +38,7 @@ class SymfonyEventDispatcherAdapterTest extends TestCase
 
     public function testDispatchWithExtractor()
     {
-        $this->dispatcher->attach('foo', function(\stdClass $stdClass, Event $event) {});
+        $this->dispatcher->attach('foo', function (\stdClass $stdClass, Event $event) {});
         $adapter = new SymfonyEventDispatcherAdapter($this->dispatcher, new WorkflowExtractor);
         $adapter->dispatch('foo', $this->workflowEvent);
     }
@@ -54,7 +54,7 @@ class SymfonyEventDispatcherAdapterTest extends TestCase
 
     public function testDispatchWithoutExtractor()
     {
-        $this->dispatcher->attach('foo', function(Event $event) {});
+        $this->dispatcher->attach('foo', function (Event $event) {});
         $adapter = new SymfonyEventDispatcherAdapter($this->dispatcher);
         $adapter->dispatch('foo', $this->workflowEvent);
     }
@@ -65,7 +65,7 @@ class SymfonyEventDispatcherAdapterTest extends TestCase
      */
     public function testDispatchNull()
     {
-        $this->dispatcher->attach('foo', function(Event $event) {});
+        $this->dispatcher->attach('foo', function (Event $event) {});
         $adapter = new SymfonyEventDispatcherAdapter($this->dispatcher);
         $adapter->dispatch('foo', null);
     }

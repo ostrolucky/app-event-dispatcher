@@ -23,7 +23,8 @@
     "symfony/dependency-injection": "*",
     "symfony/event-dispatcher": "*",
     "symfony/workflow": "*",
-    "doctrine/orm": "*"
+    "doctrine/orm": "*",
+    "friendsofphp/php-cs-fixer": "^2.4"
   },
   "suggest": {
     "symfony/dependency-injection": "To automatically attach your services to event dispatcher based on service tags"
