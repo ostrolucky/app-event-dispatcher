@@ -9,6 +9,7 @@ interface EventExtractorInterface
      * These data will be passed as variadic arguments to LaxEventDispatcher via bridge.
      *
      * @param object|null $event
+     *
      * @return array
      */
     public function extract($event = null);

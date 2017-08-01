@@ -72,7 +72,7 @@ class AppEventDispatcherTest extends TestCase
     }
 
     /**
-     * This makes sure array_search is triggered instead of isset
+     * This makes sure array_search is triggered instead of isset.
      *
      * @expectedException \Ostrolucky\AppEventDispatcher\AppEventDispatcherException
      */

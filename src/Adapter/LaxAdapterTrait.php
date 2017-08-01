@@ -23,6 +23,7 @@ trait LaxAdapterTrait
     /**
      * @param string      $eventName
      * @param object|null $event
+     *
      * @return object|null
      */
     protected function doLaxDispatch($eventName, $event = null)

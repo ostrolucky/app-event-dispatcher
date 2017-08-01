@@ -3,9 +3,21 @@
 $finder = PhpCsFixer\Finder::create()->in([__DIR__.'/src', __DIR__.'/test']);
 
 return PhpCsFixer\Config::create()->setFinder($finder)
+    ->setRiskyAllowed(true)
     ->setRules([
-        '@PSR2' => true,
+        '@Symfony' => true,
         'array_syntax' => ['syntax' => 'short'],
-        'method_argument_space' => false,
-        'braces' => false,
+        'braces' => ['allow_single_line_closure' => true],
+        'align_multiline_comment' => true,
+        'new_with_braces' => false,
+        'no_null_property_initialization' => true,
+        'no_php4_constructor' => true,
+        'no_unreachable_default_argument_value' => true,
+        'no_useless_else' => true,
+        'no_useless_return' => true,
+        'ordered_class_elements' => true,
+        'ordered_imports' => true,
+        'phpdoc_add_missing_param_annotation' => true,
+        'phpdoc_order' => true,
+        'single_line_comment_style' => true,
     ]);

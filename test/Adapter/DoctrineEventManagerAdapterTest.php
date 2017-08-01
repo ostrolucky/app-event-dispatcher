@@ -6,8 +6,8 @@ use Concise\Core\TestCase;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
-use Ostrolucky\AppEventDispatcher\AppEventDispatcher;
 use Ostrolucky\AppEventDispatcher\Adapter\DoctrineEventManagerAdapter;
+use Ostrolucky\AppEventDispatcher\AppEventDispatcher;
 
 class DoctrineEventManagerAdapterTest extends TestCase
 {

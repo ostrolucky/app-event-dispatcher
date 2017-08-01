@@ -84,6 +84,7 @@ class WorkflowExtractor implements EventExtractorInterface
 {
     /**
      * @param Event|null $event
+     *
      * @return array
      */
     public function extract($event = null)

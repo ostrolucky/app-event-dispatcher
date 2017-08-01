@@ -76,7 +76,6 @@ class RegisterListenersPassTest extends TestCase
 
 class ValidSubscriber implements EventSubscriberInterface
 {
-
     public static function getSubscribedEvents()
     {
         return [

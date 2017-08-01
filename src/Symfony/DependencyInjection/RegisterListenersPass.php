@@ -10,6 +10,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class RegisterListenersPass implements CompilerPassInterface
 {
+    protected $listeners = [];
     /**
      * @var string
      */
@@ -19,8 +20,6 @@ class RegisterListenersPass implements CompilerPassInterface
      * @var string
      */
     private $listenerTag;
-
-    protected $listeners = [];
 
     public function __construct($dispatcherService = 'app.event_dispatcher', $listenerTag = 'app.event_listener')
     {
@@ -84,7 +83,7 @@ class RegisterListenersPass implements CompilerPassInterface
     protected function addSubscriber($id, array $subscribedEvents)
     {
         foreach ($subscribedEvents as $eventName => $params) {
-            $params = (array)$params;
+            $params = (array) $params;
 
             if (is_string($params[0])) {
                 $params = [$params];
