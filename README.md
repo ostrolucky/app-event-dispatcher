@@ -12,7 +12,7 @@ It's strictly for use in **domain of your application**. This allows it to:
 Via Composer
 
 ``` bash
-composer require ostrolucky/app-event-dispatcher:dev-master
+composer require ostrolucky/app-event-dispatcher
 ```
 
 ## Requirements
